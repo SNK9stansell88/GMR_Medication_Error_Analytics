@@ -90,6 +90,91 @@ Leadership-oriented synthesis of all insights.
 - Decision tree modeling identifies primary drivers of high-risk events.  
 - Forecasting provides forward visibility into medication-error volume.
 
+This project turns 558 medication-related safety events (Medication sheet from **Krista 240726 Final.xlsx**) into a structured view of **where**, **how**, and **with what** errors occur across GMR certificates.
+
+### 1. Error Patterns (Pattern Specifics)
+
+Across all 558 events, the most frequent detailed patterns are:
+
+- **Dosing error (protocol error / general dosing problems)**
+- **Concentration error**
+- **Dosing error – limit per kg exceeded**
+- **Medication use outside protocols / protocol deviation**
+- **Underdosing**
+- **Expired medications administered**
+
+These patterns appear far more often than rare or one-off descriptions, which means they represent **repeatable, system-level failure modes**, not isolated mistakes.
+
+### 2. Risk Flags from Free Text
+
+From the `Pattern Specifics` narrative, three simple risk flags were engineered:
+
+- `Flag_Dosing_Error` – any mention of dosing, max dose, volume, over/under-dose  
+- `Flag_Wrong_Med` – wrong medication / “instead of” events  
+- `Flag_Protocol_Error` – protocol / checklist / policy / procedure issues  
+
+In the 558 records:
+
+- **Dosing-related flags** appear in **~150 events**  
+- **Wrong-medication flags** appear in **~60 events**  
+- **Protocol-related flags** appear in **~90 events**
+
+These flags become **inputs** for the later severity analysis and decision-tree model.
+
+### 3. Branch & Certificate View
+
+EDA shows how these patterns break down by **Branch (Air vs Ground)** and **Source (AEL, GFL, MTC, REACH, AMR, etc.)**:
+
+- Some high-frequency patterns (for example, dosing and protocol deviations) cluster more heavily in **Air transport**, where complexity and cognitive load are higher.
+- When grouped by **certificate**, a small number of certificates account for the majority of medication-error volume, which helps focus training and checklist work where it will have the most impact.
+
+### 4. Medications Involved
+
+Using the Medication sheet:
+
+- The analysis identifies the **Top 10 medications** most frequently involved in reported events.
+- A heatmap of **Medication × Pattern Specifics** shows which drugs are most tied to:
+  - Dosing problems  
+  - Wrong-medication swaps  
+  - Protocol deviations  
+
+This gives a short list of **“high-value medications”** (e.g., Fentanyl, Ketamine, Epinephrine, Norepinephrine, Morphine) to target for cross-check workflows, dosing support, and pocket guides.
+
+### 5. Outcome & Severity View
+
+The free-text `Outcome` field is grouped into broad severity categories:
+
+- **Critical/Severe** – terms like death, CPR, arrest, hypoxia, intubation, seizure  
+- **No Harm/Stable** – “stable,” “no adverse effect,” “resolved,” “prevented”  
+- **Monitor/Intervention** – intermediate “watch and intervene” outcomes  
+- **Unknown** – not documented
+
+When severity is cross-tabbed with:
+
+- **Certificate (Source)** → you can see which certificates have more severe outcomes vs. near-miss / no-harm events.
+- **Top medications** → you can see which drugs are more often present in serious outcomes.
+- **Risk flags** → preliminary results show that **wrong-medication** and **dosing** patterns are over-represented in the few critical events compared to the general pool.
+
+### 6. Clinical Risk Model (Decision Tree)
+
+A simple decision-tree model is built to predict whether an event is **Critical (1) vs. Non-Critical (0)** using:
+
+- Certificate / Source  
+- Branch (Air vs Ground)  
+- Grouped high-risk medications  
+- The three pattern flags (dosing, wrong med, protocol)
+
+Because true critical events are **rare**, the model uses `class_weight="balanced"` to force attention on the small set of severe outcomes. The important part is not the raw accuracy, but **which features the tree uses to split**:
+
+- **Wrong-medication flags**
+- **Specific medications (e.g., Ketamine)**
+- **Source (e.g., AMR vs others)**
+- **Dosing-error flags**
+
+These show up as the **dominant drivers** in the learned rules, reinforcing the EDA story:  
+> “When severity happens, it is usually tied to a combination of **wrong-med**, **dosing**, and specific high-risk medications in particular operating environments.”
+
+
 ---
 
 # 6. Clinical & Operational Implications for GMR
