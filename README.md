@@ -129,4 +129,41 @@ GMR_Medication_Error_Analytics/
 │     └── clinical_safety_job_description.docx
 │
 └── results/
-      ├── cluster_output_
+      ├── cluster_output.csv
+      ├── model_metrics.txt
+      ├── forecast_plot.png
+      └── feature_table_preview.csv
+```
+
+---
+
+# 8. How This Supports Future AI/ML Work at GMR
+
+This project establishes the foundation for:
+
+- Real-time AI patient-care guidance  
+- Automated medication-error early-warning systems  
+- Predictive dashboards for clinical leaders  
+- NLP-based integration with ImageTrend ePCR and device data  
+- Safety models aligned with GMR clinical guidelines  
+
+---
+
+# 9. About the Author
+
+- 30 years of clinical and air medical practice  
+- Advanced practice provider with broad critical-care background  
+- Experienced Base Medical Manager (AeroCare 5)  
+- Leader in medication-safety, QA, protocol updates, and operational performance  
+- MBA-trained with emphasis on analytics, forecasting, and systems thinking  
+- Preparing for Clinical Safety Data Analyst roles aligned with GMR’s future needs  
+
+---
+
+# Attachments Used (GMR Prompt Requirement)
+
+- Med Error 251201 1610.pdf  
+- Executive Summary.pdf  
+- Krista_240726_Final.xlsx  
+- All ML/statistics instructional documents  
+- Resume, background files, and job description  
