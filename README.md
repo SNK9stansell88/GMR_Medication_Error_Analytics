@@ -1,14 +1,3 @@
-Clinical Safety Analytics Pipeline – Medication Error Analysis (GMR)
-
-This repository demonstrates a complete clinical safety analytics workflow built for Global Medical Response (GMR).
-It combines 30 years of clinical insight with modern analytics, forecasting, clustering, and machine-learning techniques to reveal patterns in medication errors and support future AI-driven safety initiatives.
-
-This project is designed for:
-
-Jennifer Fletcher, VP of Clinical Services
-
-John Paul (JP) Feliciano, Clinical Safety Data Analyst
-
 1. Project Overview
 
 This project analyzes medication-error events across all GMR certificates using a structured, multi-notebook pipeline.
@@ -37,6 +26,7 @@ Integrate results into a leadership-facing narrative
 3. Dataset Description
 
 Source: Krista_240726_Final.xlsx
+
 Sheets used:
 
 Medication — event-level details
@@ -98,7 +88,7 @@ Inferential statistics identify statistically significant differences between op
 
 Decision-tree modeling highlights the strongest predictors of high-risk events.
 
-Forecasting provides early visibility into anticipated medication-error volume.
+Forecasting provides visibility into anticipated medication-error volume.
 
 These insights build a foundation for targeted intervention and system-wide safety improvement.
 
