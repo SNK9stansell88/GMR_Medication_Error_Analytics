@@ -1,110 +1,111 @@
-1. Project Overview
+# Clinical Safety Analytics Pipeline – Medication Error Analysis (GMR)
 
-This project analyzes medication-error events across all GMR certificates using a structured, multi-notebook pipeline.
-It demonstrates how clinical expertise and analytics can work together to uncover safety risks, quantify differences across operations, create predictive insights, and support future real-time guidance tools.
+This repository demonstrates a complete clinical safety analytics workflow built for Global Medical Response (GMR).  
+It combines **30 years of clinical insight** with **modern analytics, forecasting, clustering, and machine-learning techniques** to reveal patterns in medication errors and support future AI-driven safety initiatives.
 
-2. Objectives of the Analysis
+This project is designed for:
 
-Summarize medication-error trends
+- **Jennifer Fletcher**, VP of Clinical Services  
+- **John Paul (JP) Feliciano**, Clinical Safety Data Analyst  
 
-Identify common patterns and medications involved
+---
 
-Compare patterns by Branch (Air/Ground) and Certificate
+# 1. Project Overview
 
-Engineer features to support modeling
+This project analyzes medication-error events across all GMR certificates using a structured, multi-notebook analytics pipeline.  
+It demonstrates how clinical expertise and analytics work together to uncover safety risks, quantify operational differences, create predictive insights, and support future real-time guidance tools.
 
-Cluster error types into meaningful groups
+---
 
-Perform inferential testing to validate differences
+# 2. Objectives of the Analysis
 
-Build a simple decision-tree risk model
+- Summarize medication-error trends  
+- Identify common patterns and medications involved  
+- Compare patterns by **Branch (Air/Ground)** and **Certificate**  
+- Engineer features to support modeling  
+- Cluster error types into meaningful groups  
+- Perform inferential tests to validate differences  
+- Build a simple decision-tree risk model  
+- Forecast future medication-error frequency  
+- Integrate results into a leadership-facing narrative  
 
-Forecast future medication-error frequency
+---
 
-Integrate results into a leadership-facing narrative
+# 3. Dataset Description
 
-3. Dataset Description
+**Source:** `Krista_240726_Final.xlsx`  
 
-Source: Krista_240726_Final.xlsx
+**Sheets used:**
 
-Sheets used:
+- **Medication** — event-level details  
+- **Med Error Summary** — certificate-level totals  
 
-Medication — event-level details
+**Data preparation included:**
 
-Med Error Summary — certificate-level totals
+- Standardizing Branch and Source labels  
+- Cleaning medication and pattern fields  
+- Creating clinical pattern flags and medication-group indicators  
+- Preparing monthly time-series data  
+- Constructing a binary target for risk modeling  
 
-Data preparation included:
+---
 
-Standardizing Branch and Source fields
+# 4. Methods & Notebooks
 
-Cleaning medication and pattern fields
-
-Creating clinical pattern flags and medication-group indicators
-
-Preparing monthly time-series data
-
-Constructing a binary target for risk modeling
-
-4. Methods & Notebooks
-
-Each notebook covers one stage in the analytics pipeline:
-
-01 — Data Overview
+**01 — Data Overview**  
 Basic inspection of columns, missing values, and dataset shape.
 
-02 — Univariate EDA
-Frequency and distribution of key fields (patterns, medications, branch, certificate).
+**02 — Univariate EDA**  
+Distribution of patterns, medications, branch, certificate.
 
-03 — Bivariate Analysis
-Cross-tab exploration of patterns by Branch (Air/Ground) and Certificate.
+**03 — Bivariate Analysis**  
+Cross-tabs of patterns by Branch (Air/Ground) and Certificate.
 
-04 — Feature Engineering
-Creation of domain-specific clinical flags, medication groupings, and operational indicators.
+**04 — Feature Engineering**  
+Clinical flags, medication groups, and operational indicators.
 
-05 — Clustering
-K-means clustering to group medication-error events with similar characteristics.
+**05 — Clustering**  
+K-means grouping of medication-error events with similar characteristics.
 
-06 — Inferential Statistics
-t-tests (Air vs Ground) and ANOVA (Certificate-level differences) to determine which differences are statistically meaningful.
+**06 — Inferential Statistics**  
+t-tests (Air vs Ground) and ANOVA (Certificate differences).
 
-07 — Decision Tree Model
-Simple, interpretable model predicting high-risk events using engineered features.
+**07 — Decision Tree Model**  
+Simple, interpretable prediction model for high-risk events.
 
-08 — Forecasting
-Holt linear trend model predicting future monthly medication-error counts.
+**08 — Forecasting**  
+Holt linear trend model forecasting monthly medication-error counts.
 
-09 — Integrated Summary
-Final leadership-facing synthesis that integrates the full pipeline and highlights actionable insights.
+**09 — Integrated Summary**  
+Leadership-oriented synthesis of all insights.
 
-5. Key Findings (High-Level)
+---
 
-Common patterns include wrong medication, dose errors, sedation-related issues, and documentation inconsistencies.
+# 5. Key Findings (High-Level)
 
-Operational variation exists between Air and Ground operations and across business units.
+- Most common patterns include wrong medication, dose errors, sedation-related issues, documentation errors.  
+- Variation exists between **Air and Ground** as well as across certificates.  
+- Clustering reveals coherent themes: dose-related, wrong-medication, sedation/analgesia clusters.  
+- Inferential testing confirms significant operational differences.  
+- Decision tree modeling identifies primary drivers of high-risk events.  
+- Forecasting provides forward visibility into medication-error volume.
 
-Clusters reveal thematic groupings of errors (dose, wrong-medication, sedation/analgesia-related).
+---
 
-Inferential statistics identify statistically significant differences between operational groups.
+# 6. Clinical & Operational Implications for GMR
 
-Decision-tree modeling highlights the strongest predictors of high-risk events.
+- Certificate-level variation highlights opportunities for focused training and protocol reinforcement.  
+- Clusters support targeted safety initiatives tailored to operational patterns.  
+- Predictive modeling lays groundwork for real-time risk identification and future AI-supported clinical guidance.  
+- Forecasting informs staffing, education, and proactive safety planning.
 
-Forecasting provides visibility into anticipated medication-error volume.
+This project demonstrates how clinically grounded analytics can strengthen patient safety across the GMR system.
 
-These insights build a foundation for targeted intervention and system-wide safety improvement.
+---
 
-6. Clinical & Operational Implications for GMR
+# 7. Repository Structure
 
-Variation across certificates signals opportunities for targeted training and protocol reinforcement.
-
-Clusters support focused clinical-safety initiatives aligned with operational patterns.
-
-Predictive modeling establishes a path toward real-time risk identification, aligned with future AI-supported clinical guidance.
-
-Forecasting informs staffing, education, and medication-safety planning at a system-wide level.
-
-This project shows how clinically grounded analytics can support safer, more consistent patient care across the GMR system.
-
-7. Repository Structure
+```
 GMR_Medication_Error_Analytics/
 │
 ├── README.md
@@ -128,49 +129,4 @@ GMR_Medication_Error_Analytics/
 │     └── clinical_safety_job_description.docx
 │
 └── results/
-      ├── cluster_output.csv
-      ├── model_metrics.txt
-      ├── forecast_plot.png
-      └── feature_table_preview.csv
-
-8. How This Supports Future AI/ML Work at GMR
-
-This project establishes the analytical foundation for:
-
-Real-time AI patient-care guidance
-
-Automated medication-error early-warning systems
-
-Predictive dashboards for safety officers
-
-NLP-based integration with ImageTrend ePCR and device data
-
-Safety models aligned with GMR clinical guidelines
-
-Together, these steps align with GMR’s long-term vision for data-driven clinical excellence.
-
-9. About the Author
-
-30 years of clinical and air medical practice
-
-Advanced practice provider with broad critical-care experience
-
-Experienced Base Medical Manager (AeroCare 5)
-
-Leader in medication-safety initiatives, QA, protocol education, and operational improvements
-
-MBA-trained with emphasis on analytics, forecasting, and systems thinking
-
-Preparing for Clinical Safety Data Analyst roles aligned with GMR’s strategic quality initiatives
-
-Attachments Used (GMR Prompt Requirement)
-
-Med Error 251201 1610.pdf
-
-Executive Summary.pdf
-
-Krista_240726_Final.xlsx
-
-All ML/statistics instructional documents
-
-Resume, background files, and job description
+      ├── cluster_output_
