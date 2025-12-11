@@ -1,0 +1,4 @@
+Model: Decision Tree
+Max Depth: 3
+Accuracy: (generated when running notebook)
+Confusion Matrix: (generated when running notebook)
