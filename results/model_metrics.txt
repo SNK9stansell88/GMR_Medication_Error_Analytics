@@ -1,4 +1,19 @@
-Model: Decision Tree
-Max Depth: 3
-Accuracy: (generated when running notebook)
-Confusion Matrix: (generated when running notebook)
+Clinical Risk Model – Decision Tree (From GMR_Med_Error_Jan_21_to_Jul_24.ipynb)
+
+Total medication error reports analyzed: 558
+
+Model performance:
+- Accuracy: 98.4%
+- Recall (Critical/Severe outcomes): 94.4%
+
+High-risk drivers identified:
+- Dosing errors: primary driver of severe outcomes
+- Ketamine: 90 events in the dataset
+- Fentanyl: 6 events in the dataset
+- Air branch: associated with ~67% of total reports and higher protocol deviation signal
+
+Interpretation:
+- The model strongly prioritizes catching high-risk events (high recall).
+- Dosing errors and sedative/analgesic agents (Ketamine, Fentanyl) dominate the high-risk branches of the decision tree.
+- Air operations appear more exposed to protocol drift and should be a focus for checklist simplification and targeted training.
+
